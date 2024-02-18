@@ -1,0 +1,16 @@
+name: robust
+channels:
+  - conda-forge
+dependencies:
+  - python==3.8.17
+  - pip
+  - pip:
+    - numpy==1.23.2
+    - scipy==1.10.1
+    - pydicom==2.4.3
+    - pandas==2.0.3
+    - streamlit==1.23.1
+    - plotly==5.16.1
+    - pymoo==0.6.0.1
+    - xlrd==2.0.1
+    - openpyxl==3.1.2

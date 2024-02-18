@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["robustbrachy", "robustbrachy.robustevaluation", "robustbrachy.robustoptimisation"]
+package-dir = {"" = "src"}
+
+[project]
+name = "robustbrachy"
+
+version = "0.0.1"
+
+description = "A robust evaluation and robust optimisation algorithms for HDR prostate Brachytherapy."
+
+readme = "README.md"
+
+requires-python = "==3.8.17"
+
+license = {file = "LICENSE"}
+
+authors = [
+    {name = "Andrew Kennedy", email = "andrew.kennedy@adelaide.edu.au"},
+]
+
+dependencies = [
+    "numpy", 
+    "scipy", 
+    "pydicom", 
+    "pandas", 
+    "streamlit", 
+    "plotly", 
+    "pymoo",
+    "xlrd"
+]
