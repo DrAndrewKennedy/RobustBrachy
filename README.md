@@ -179,7 +179,7 @@ streamlit run HDR_prostate_robust_app.py
 
 # Examples
 ## Example Treatment Plan DICOMS
-The example treatment plan was created from a phantom with a small prostate volume. The small volume causes large variations in DVH metrics as uncertainty shifts are applied to needles and other structures. Although this plan provides an adaquate test plan to explore the features of RobustBrachy, the intention soon is to provide an example plan with a prostate volume that more examplifies the average patient undergoing HDR prostate brachytehrapy.
+~~The example treatment plan was created from a phantom with a small prostate volume. The small volume causes large variations in DVH metrics as uncertainty shifts are applied to needles and other structures. Although this plan provides an adaquate test plan to explore the features of RobustBrachy, the intention soon is to provide an example plan with a prostate volume that more examplifies the average patient undergoing HDR prostate brachytehrapy.~~ :white_check_mark:
 ## Example Python Scripts
 Python scripts demonstrating example uses of the RobustBrachy package are found in the root directory of this github repository, split into using cpu only and using gpu acceleration. 
 - Nominal plan anaylsis example does a fast TG43 dose calculation and outputs the DVH plots and DVH metrics.
