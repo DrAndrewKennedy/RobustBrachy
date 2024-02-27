@@ -19,6 +19,7 @@
 ###########################################################################
 
 import numpy as np
+import pandas as pd
 from pydicom.sequence import Sequence
 from pydicom.dataset import Dataset
 from copy import deepcopy
@@ -27,6 +28,43 @@ from robustbrachy.robustoptimisation.dose_per_dwell_cpu import *
 from robustbrachy.robustevaluation.fast_TG43_cpu import *
 
 
+def show_dataset(dicom_data_sequ, indent):
+    for elem in dicom_data_sequ:
+        
+        if elem.VR == "SQ":
+            indent += 4 * " "
+            for item in elem:
+                show_dataset(item, indent)
+            indent = indent[4:]
+            
+        if elem.VR == "UI":
+            print(indent + str(elem))       
+
+
+def change_dataset(dicom_data_sequ, timeID):
+    for elem in dicom_data_sequ:
+        
+        if elem.VR == "SQ":
+            for item in elem:
+                change_dataset(item,timeID)
+
+            
+        if elem.VR == "UI":
+            val_place_holder = elem.value
+            val_place_holder_split = val_place_holder.split(".")
+
+            for i, val in enumerate(val_place_holder_split):
+                if len(val) == 14:
+                    val_place_holder_split[i] = timeID
+
+            val_place_holder = ""
+            for i, val in enumerate(val_place_holder_split):
+                val_place_holder = val_place_holder + "." + val
+            val_place_holder = val_place_holder[1:]
+
+            elem.value = val_place_holder     
+    return dicom_data_sequ
+    
 def dose_from_1_dwell_at_1_pt(
     dwell_pt,
     field_pt,
@@ -562,4 +600,15 @@ def generate_DICOM_plan_files(
             1
         ].DVHROIContributionType = "EXCLUDED"
 
+    # update the UID in each data element in the dicom (change date to current)
+    timeID = pd.Timestamp.now().strftime("%Y%m%d%H%M%S")
+
+    #show_dataset(rp, indent="")
+    rp_robust = change_dataset(rp_robust, timeID)
+    #show_dataset(rp, indent="")
+
+    #show_dataset(rd, indent="")
+    rd_robust = change_dataset(rd_robust, timeID)
+    #show_dataset(rd, indent="")
+    
     return rp_robust, rd_robust
