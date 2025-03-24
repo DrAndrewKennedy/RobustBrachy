@@ -141,7 +141,7 @@ pip install --upgrade build
 
 4. install RobustBrachy by typing the following command:
 ```
-pip install git+https://github.com/DrHazza/RobustBrachy.git
+pip install git+https://github.com/DrAndrewKennedy/RobustBrachy.git
 ```
 
 ### Method 2: Uisng a local copy
